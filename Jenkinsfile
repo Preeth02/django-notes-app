@@ -19,9 +19,15 @@ pipeline {
         }
         stage('Build') {
             steps {
-                script{
-                    docker_build("notes-app","${USERNAME}","latest");
-                }
+                withCredentials([usernamePassword(
+    credentialsId: 'dockerhubCred',
+    usernameVariable: 'USERNAME',
+    passwordVariable: 'PASSWORD'
+)]) {
+    script{
+        docker_build("notes-app", env.USERNAME, "latest")
+    }
+}
                 // echo 'This is a build stage'
                 // sh "docker build -t preetham02/notes-app:latest ."
             }
