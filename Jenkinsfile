@@ -30,6 +30,7 @@ pipeline {
             steps {
                 echo 'This is a test stage'
                 echo 'This is a test stage for SCM'
+                echo 'This is a test stage for SCM 2'
             }
         }
         stage("Push to docker hub"){
